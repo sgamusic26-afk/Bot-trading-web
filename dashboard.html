@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Panel</h3>
+<p>Usuario: {{ user.name or user.email }} — Rol: {{ user.role }}</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5>Bot</h5>
+    <p>Estado: <strong>{{ bot.running }}</strong></p>
+    <p>Última ejecución: {{ bot.last_run }}</p>
+    {% if user.can_use_bot %}
+      <a class="btn btn-danger" href="{{ url_for('bot_stop') }}">Detener</a>
+      <a class="btn btn-success" href="{{ url_for('bot_start') }}">Iniciar</a>
+    {% else %}
+      <div class="alert alert-warning">No tenés permiso para ejecutar el bot. Pedí acceso al propietario.</div>
+    {% endif %}
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5>Últimas señales (logs)</h5>
+    <pre style="max-height:300px; overflow:auto;">{{ bot.logs[-20:]|join('\n') }}</pre>
+  </div>
+</div>
+{% endblock %}

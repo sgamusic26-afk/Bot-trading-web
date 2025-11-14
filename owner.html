@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Panel del Propietario</h3>
+<p>Desde acá podés permitir que usuarios usen el bot o revocar acceso.</p>
+<table class="table">
+  <thead><tr><th>Email</th><th>Nombre</th><th>Rol</th><th>Can Use Bot</th><th>Acción</th></tr></thead>
+  <tbody>
+    {% for u in users %}
+      <tr>
+        <td>{{ u.email }}</td>
+        <td>{{ u.name }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ 'Sí' if u.can_use_bot else 'No' }}</td>
+        <td>
+          {% if u.role != 'owner' %}
+            <a class="btn btn-sm btn-primary" href="{{ url_for('owner_toggle', user_id=u.id) }}">Toggle permiso</a>
+          {% else %}
+            --
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

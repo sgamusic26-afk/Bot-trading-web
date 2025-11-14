@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Registro</h3>
+<form method="post">
+  <div class="mb-3">
+    <label>Email</label>
+    <input class="form-control" name="email" required/>
+  </div>
+  <div class="mb-3">
+    <label>Nombre (opcional)</label>
+    <input class="form-control" name="name"/>
+  </div>
+  <div class="mb-3">
+    <label>Contraseña</label>
+    <input class="form-control" type="password" name="password" required/>
+  </div>
+  <button class="btn btn-success">Crear cuenta</button>
+</form>
+{% endblock %}

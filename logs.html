@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Logs del Bot</h3>
+<pre style="white-space:pre-wrap; max-height:600px; overflow:auto;">{{ logs|join('\n') }}</pre>
+{% endblock %}

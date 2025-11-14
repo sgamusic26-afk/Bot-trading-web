@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1 class="mb-3">Bot de Trading - Web</h1>
+  <p class="lead">Accedé desde tu iPhone con este sitio. Propietario único y panel de usuarios incluido.</p>
+  {% if user %}
+    <p>Hola, {{ user.name or user.email }} — tu rol: <strong>{{ user.role }}</strong></p>
+    <a class="btn btn-primary" href="{{ url_for('dashboard') }}">Ir a Dashboard</a>
+  {% else %}
+    <a class="btn btn-success" href="{{ url_for('register') }}">Crear cuenta</a>
+    <a class="btn btn-primary" href="{{ url_for('login') }}">Iniciar sesión</a>
+  {% endif %}
+  <hr/>
+  <h5>Estado del bot:</h5>
+  <p>Running: <strong>{{ bot.running }}</strong> — Last run: {{ bot.last_run }}</p>
+</div>
+{% endblock %}
